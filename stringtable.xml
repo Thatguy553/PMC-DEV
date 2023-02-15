@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Project name="PMC">
+    <Package name="GENERAL">
+        <Key ID="STR_KPPLM_ACTIONOPEN">
+            <English>words</English>
+        </Key>
+        <Key ID="STR_KPPLM_TITLE">
+            <English>words</English>
+        </Key>
+    </Package>
+</Project>
+
