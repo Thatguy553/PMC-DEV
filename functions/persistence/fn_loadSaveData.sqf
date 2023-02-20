@@ -1,1 +1,0 @@
-missionProfileNamespace getVariable [Format["PMCSaveData-%1", worldName], [[], []]];

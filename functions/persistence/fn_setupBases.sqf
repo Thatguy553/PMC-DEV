@@ -18,18 +18,6 @@ Base Data Save Format:
 ]
 */
 
-
-_saveData = call PMC_fnc_loadSaveData;
-if (_saveData isEqualTo []) exitWith {
-	diag_log "[PMC] No save data found.";
-};
-
-PMC_Factions = _saveData select 0;
-if (PMC_Factions isEqualTo []) exitWith {
-	diag_log "[PMC] No Factions found.";
-};
-
-PMC_Bases = _saveData select 1;
 if (PMC_Bases isEqualTo []) exitWith {
 	diag_log "[PMC] No Bases found.";
 };
@@ -38,7 +26,7 @@ private ["_hq", "_hqObj"];
 
 {
 	// Current result is saved in variable _x
-	_hq = Base_Object createVehicle ((_x select 1) select 0);
+	_hq = PMC_Base_Object createVehicle ((_x select 1) select 0);
 	_hq setVectorDir ((_x select 1) select 1);
 	_hq setVectorUp ((_x select 1) select 2);
 

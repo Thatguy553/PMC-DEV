@@ -6,7 +6,7 @@ Return:
 */
 
 private ["_factions", "_factionID", "_bases", "_baseObj"];
-
+_bases = [];
 _factions = call PMC_fnc_getFactions;
 
 if (_factions isEqualTo []) exitWith {
@@ -15,8 +15,9 @@ if (_factions isEqualTo []) exitWith {
 
 {
 	// Current result is saved in variable _x
+	_factionId = _x select 0;
 	_baseObj = missionNamespace getVariable (format["PMC_HQ_", _factionID]);
-	if !(isNil _baseObj) then {
+	if !(isNil "_baseObj") then {
 		_bases append _baseObj;
 	};
 } forEach _factions;

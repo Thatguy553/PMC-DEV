@@ -9,25 +9,17 @@ if !((getPlayerUID _caller) in PMC_Approved) exitWith {
 	hint "You must be approved by an administrator to spawn a new base!";
 };
 
-if (_caller getVariable ['PMC_FACTION', 'null'] isEqualTo 'null') then {
+if ((_caller getVariable ['PMC_FACTION', "none"]) isEqualTo "none") then {
 	hint "You must create a faction first!";
 };
 
-hint "Spawning Base Box...";
+hint "Spawning Base Container...";
 private ["_objCords", "_container"];
-// _objCords = getPosATL _obj;
-// _objCords = [[(_objCords select 0) + 10, (_objCords select 1) + 10, _objCords select 2], 1, 150, 3, 0, 20, 0] call BIS_fnc_findSafePos;
-_container = Base_Container createVehicle (getMarkerPos "base_container_spawn");
+_container = PMC_Base_Container createVehicle (getMarkerPos "PMC_Base_Container_spawn");
 _container addAction [
 	"Deploy Base",
-	format["
 	{
 		params ['_target', '_caller'];
-		[_target, %1] call PMC_fnc_createBase;
-	}", _caller getVariable ['PMC_FACTION', 'null']],
-	nil,		// arguments
-	1.5,		// priority
-	true,		// showWindow
-	true,		// hideOnUse
-	""			// shortcut
-]
+		[_target, _caller getVariable ['PMC_FACTION', "none"]] call PMC_fnc_createBase;
+	}
+];

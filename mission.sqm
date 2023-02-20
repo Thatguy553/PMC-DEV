@@ -8,7 +8,7 @@ class EditorData
 	toggles=641;
 	class ItemIDProvider
 	{
-		nextID=6510;
+		nextID=6514;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=12;
+		nextID=22;
 	};
 	class Camera
 	{
-		pos[]={4944.3066,33.996834,10288.326};
-		dir[]={-0.86395258,-0.50356615,0.0026980306};
-		up[]={-0.50356376,0.86395663,0.0015725753};
-		aside[]={0.0031228771,-1.1641532e-010,0.99999523};
+		pos[]={4938.292,44.927917,10292.38};
+		dir[]={-0.63032824,-0.66559595,-0.39958531};
+		up[]={-0.56215596,0.74631226,-0.35636872};
+		aside[]={-0.53541303,0,0.84459043};
 	};
 };
 binarizationWanted=0;
@@ -130,13 +130,14 @@ addons[]=
 	"A3_Structures_F_System",
 	"A3_Structures_F_Enoch_Decals_Horizontal",
 	"A3_Ui_F",
-	"A3_Characters_F"
+	"A3_Characters_F",
+	"A3_Modules_F_Curator_Curator"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=41;
+		items=42;
 		class Item0
 		{
 			className="A3_Structures_F_Exp";
@@ -424,6 +425,13 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
+		class Item41
+		{
+			className="A3_Modules_F_Curator";
+			name="Arma 3 Zeus Update - Scripted Modules";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
 	};
 };
 dlcs[]=
@@ -489,7 +497,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=8;
+		items=10;
 		class Item0
 		{
 			dataType="Object";
@@ -57158,7 +57166,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4934.1782,18.618881,10292.328};
+				position[]={4926.1377,18.618881,10293.757};
 				angles[]={0,0.041975167,0};
 			};
 			side="Empty";
@@ -57183,16 +57191,47 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={4935.6665,17.651438,10269.326};
+						position[]={4935.667,17.651438,10269.326};
 					};
 					side="West";
 					flags=7;
 					class Attributes
 					{
+						name="plyr";
 						isPlayer=1;
 					};
 					id=6506;
 					type="B_Soldier_A_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									singleType="STRING";
+									value="Male02ENG";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									singleType="SCALAR";
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 			};
 			class Attributes
@@ -57204,7 +57243,7 @@ class Mission
 		{
 			dataType="Marker";
 			position[]={4920.9922,17.65,10285.608};
-			name="base_container_spawn";
+			name="PMC_Base_Container_spawn";
 			type="Empty";
 			angle=181.91698;
 			id=6508;
@@ -57217,6 +57256,90 @@ class Mission
 			type="Empty";
 			angle=1.046;
 			id=6509;
+		};
+		class Item8
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={4931.96,17.65,10273.75};
+			};
+			id=6510;
+			type="ModuleCurator_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleCurator_F_Owner";
+					expression="_this setVariable ['Owner',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="plyr";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleCurator_F_Forced";
+					expression="_this setVariable ['Forced',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleCurator_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="STRING";
+							value="";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleCurator_F_Addons";
+					expression="_this setVariable ['Addons',_value,true];";
+					class Value
+					{
+						class data
+						{
+							singleType="SCALAR";
+							value=2;
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item9
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4935.4111,18.618881,10293.501};
+				angles[]={0,0.041975167,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="this addAction [ " \n " ""Create Faction"", " \n " { " \n "  params [""_target"", ""_caller""]; " \n "  private [""_success""]; " \n "  _success = [_caller] call PMC_fnc_createFaction; " \n "  if (_success) then { " \n "   PMC_Approved deleteAt (PMC_Approved findIf {(getPlayerUID _caller) isEqualTo _x});" \n "systemChat ""Faction Creation Success!""; " \n "  } else { " \n "   systemChat ""Faction Creation Failed...""; " \n "  }; " \n " }, " \n " nil,   " \n " 1.5,   " \n " true,   " \n " true,   " \n " """",  " \n " ""(getPlayerUID player) in PMC_Approved""  " \n "];";
+				name="FactionApplicationBoard_1";
+			};
+			id=6511;
+			type="Land_MapBoard_F";
 		};
 	};
 };

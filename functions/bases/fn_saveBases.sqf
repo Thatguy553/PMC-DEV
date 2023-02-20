@@ -8,12 +8,12 @@ HQBuildings will have var name PMC_HQ_factionID
 private ["_factions", "_baseObjects", "_basesArray"];
 
 {
-	_nObjs = nearestObjects [_x, [] call PMC_fnc_saveableObjects, Base_Radius, true];
+	_nObjs = nearestObjects [_x, [] call PMC_fnc_saveableObjects, PMC_Base_Radius, true];
 	_nObjsFormated = [];
 	{
 		_nObjsFormated pushBack [[typeOf _x, getPosATL _x, vectorDir _x, vectorUp _x]];
 	} forEach _nObjs;
-	_basesArray pushBack [[_x getVariable ["PMC_HQ_FACTION", "null"], [_x getPosATL, vectorDir _x, vectorUp _x], _nObjsFormated]];
+	_basesArray pushBack [[_x getVariable ["PMC_HQ_FACTION", "null"], [getPosATL _x, vectorDir _x, vectorUp _x], _nObjsFormated]];
 } forEach (call PMC_fnc_getBases);
 
 _basesArray

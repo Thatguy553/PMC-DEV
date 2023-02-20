@@ -1,19 +1,4 @@
 /*
-    File: description.ext
-    Author: KP Liberation Dev Team - https://github.com/KillahPotatoes
-    Date: 2017-10-16
-    Last Update: 2021-04-25
-    License: MIT License - http://www.opensource.org/licenses/MIT
-
-    Description:
-        Information about the author, mission name, respawn and more very general settings.
-        This overrides corresponding settings which are made in the sqm via eden editor.
-
-    Reference from where most descriptions are from:
-        https://community.bistudio.com/wiki/Description.ext
-*/
-
-/*
     ----- General -----
 */
 
@@ -231,9 +216,8 @@ class CfgDiscordRichPresence {
 
 class CfgFunctions {
     #include "CfgFunctions.inc"
+    #include "cau\userinputmenus\CfgFunctions.cpp"
     // #include "KP\KPPLM\KPPLM_functions.inc"
-    // #include "Txu_Info\cfgfunctions.inc"
-    // #include "vcom\cfgFunctions.hpp"
 };
 class CfgRespawnTemplates {
 
@@ -269,3 +253,15 @@ class Extended_PreInit_EventHandlers {
 // #include "KP\KPGUI\KPGUI_defines.inc"
 // #include "KP\KPPLM\ui\KPPLM_dialog.inc"
 
+#include "cau\userinputmenus\systems\_macros.inc"
+#include "cau\userinputmenus\systems\_defines.inc"
+
+#include "cau\userinputmenus\controls.cpp"
+#include "cau\userinputmenus\systems\displayColorPicker.cpp"
+#include "cau\userinputmenus\systems\displayGuiMessage.cpp"
+#include "cau\userinputmenus\systems\displayListbox.cpp"
+#include "cau\userinputmenus\systems\displayListboxMulti.cpp"
+#include "cau\userinputmenus\systems\displayProgressBar.cpp"
+#include "cau\userinputmenus\systems\displaySlider.cpp"
+#include "cau\userinputmenus\systems\displayText.cpp"
+#include "cau\userinputmenus\systems\displayTextMulti.cpp"

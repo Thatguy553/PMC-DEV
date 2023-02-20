@@ -12,9 +12,9 @@ class PMC {
     class persistence {
         file = "functions\persistence";
 
-        class loadSaveData             {};
+        class getSaveData             {};
         class saveData                 {};
-        class setupServer              {};
+        class setupBases              {};
     };
     
     class bases {
